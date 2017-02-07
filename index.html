@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="title" content="Countdown Screensaver">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- Font Awesome-->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <!-- Google Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,700" rel="stylesheet" type="text/css">
+
+  <link href="css/main.css" rel="stylesheet">
+  <!-- SEO -->
+  <meta name="description" content="Salvapantallas con cuenta atrás" />
+  <meta name="author" content="Ignacio Galdames" />
+  <!-- Standard Favicon -->
+  <link rel="icon" type="image/png" href="img/iconos/favicon.png" />
+ 
+  <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+ 
+<div class="container-fluid">
+
+ <div class="content">
+
+   <div class="row align-items-center h-100vh text-center">
+     <div class="col countdown">
+       <h1>Cuenta Atrás</h1>
+         <div id="clock"></div>
+     </div>
+   </div>
+ </div>
+
+</div>
+
+
+  <!-- jQuery first, then Tether, then Bootstrap JS. -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/jquery.countdown.min.js"></script>
+
+
+<script type="text/javascript">
+
+$('#clock').countdown('2017/10/26 9:45:00')
+.on('update.countdown', function(event) {
+  var format = '%H:%M:%S';
+
+  if(event.offset.totalDays > 0) {
+    format = '%-d día%!d ' + format;
+  }
+  if(event.offset.weeks > 0 && event.offset.weeks < 4) {
+    format = '%-w semana%!w ' + format;
+  }
+  if(event.offset.months > 0 && event.offset.months < 2) {
+    format = '%m me%!w ' + format;
+  }
+   if(event.offset.months > 1) {
+    format = '%m mese%!w ' + format;
+  }
+  $(this).html(event.strftime(format));
+})
+.on('finish.countdown', function(event) {
+  $(this).html('La cuenta ha terminado!')
+    .parent().addClass('disabled');
+
+});
+</script>
+</body>
+
+
+</html>
